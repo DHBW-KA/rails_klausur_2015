@@ -25,6 +25,46 @@ Vorbereitung
     * Session
     * Nested Forms
 
+
+Anfangs Zustand
+===============
+
+* 0 von 27 Tests
+
+Aufgabe
+======
+
+Lege die folgenden Model durch Scaffolding an.
+
+Scaffold
+-------
+
+* Product
+    * Name: string
+    * price: float
+    * weight: float
+* Cart
+    * hat einen Customer
+* Customer
+    * first_name: string
+    * last_name: string
+    * email: string
+    * ship_address: Addresse
+    * bill_address: Addresse
+* Address
+    * street: string
+    * zip_code: string
+    * city: string
+    
+Weiteres Vorgehen
+-----------------
+
+* Erzeuge die notwendigen Join-Tabellen
+* Lege das Model Order < Cart an ("Order" erbt von "Cart") und den Controller "Order".
+* Der `root_path` soll auf `'products#index'` zeigen.
+* Hinweis: Frühzeitig `accepts_nested_attributes_for ...` in die entsprechenden Modelle einfügen, sonst kommt es zu merkwürdigen Fehlermeldungen.
+
+
 Abgabe
 ======
 
