@@ -1,0 +1,63 @@
+require 'test_helper'
+
+class CustomersControllerTest < ActionController::TestCase
+  setup do
+    @customer = customers(:one)
+  end
+
+  test "should get index" do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:customers)
+  end
+
+  test "should get new" do
+    get :new
+    assert_response :success
+  end
+
+  test "should create customer" do
+    assert_difference('Customer.count') do
+      post :create, customer: { bill_address_id: @customer.bill_address_id, email: @customer.email, first_name: @customer.first_name, last_name: @customer.last_name, ship_address_id: @customer.ship_address_id }
+    end
+
+    assert_redirected_to customer_path(assigns(:customer))
+  end
+
+  test "shouln'd create customer without email" do
+    post :create, customer: { bill_address_id: @customer.bill_address_id, email: "", first_name: @customer.first_name, last_name: @customer.last_name, ship_address_id: @customer.ship_address_id }
+    assert_response :success
+    assert_select "#error_explanation > h2", "1 error prohibited this customer from being saved:"
+    assert_select "li", "Email can't be blank"
+  end
+
+  test "should show customer" do
+    get :show, id: @customer
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get :edit, id: @customer
+    assert_response :success
+  end
+
+  test "should update customer" do
+    patch :update, id: @customer, customer: { bill_address_id: @customer.bill_address_id, email: @customer.email, first_name: @customer.first_name, last_name: @customer.last_name, ship_address_id: @customer.ship_address_id }
+    assert_redirected_to customer_path(assigns(:customer))
+  end
+
+  test "shouln'd update customer without email" do
+    patch :update, id: @customer, customer: { bill_address_id: @customer.bill_address_id, email: "", first_name: @customer.first_name, last_name: @customer.last_name, ship_address_id: @customer.ship_address_id }
+    assert_response :success
+    assert_select "#error_explanation > h2", "1 error prohibited this customer from being saved:"
+    assert_select "li", "Email can't be blank"
+  end
+
+  test "should destroy customer" do
+    assert_difference('Customer.count', -1) do
+      delete :destroy, id: @customer
+    end
+
+    assert_redirected_to customers_path
+  end
+end
