@@ -1,0 +1,27 @@
+= form_for @order, html: {class: 'ui form'} do |f|
+  - if @order.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@order.errors.count, "error")} prohibited this cart from being saved:"
+      ul
+        - @order.errors.full_messages.each do |message|
+          li = message
+  = f.fields_for :customer do |c|
+    .two.fields
+      .field
+        = c.text_field :first_name, placeholder: "First Name"
+      .field
+        = c.text_field :last_name, placeholder: "Last Name"
+    .field
+      = c.email_field :email, placeholder: "Email"
+    - [:ship_address, :bill_address].each do |addr|
+      = c.fields_for addr do |s|
+        .field.header = addr.to_s.humanize
+        .field
+          = s.text_field :street, placeholder: "Street"
+        .fields
+          .six.wide.field
+            = s.text_field :zip_code, placeholder: "Zip Code"
+          .ten.wide.field
+            = s.text_field :city, placeholder: "City"
+  .actions
+    = f.submit class: 'ui green button'

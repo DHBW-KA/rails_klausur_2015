@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Klausur</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Klausur</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<a href="<%= root_path %>" class="item">Home</a>
+<main class="ui page grid">
+  <div class="row">
+    <div class="column">
+      <div class="ui right attached rail">
+        <div class="ui blue segment">
+          <h2>Cart</h2>
+          <ul id="cart">
+            <%= render @products_in_cart %>
+          </ul>
+          <a class="ui green button" href="<%= new_order_path %>">Checkout</a>
+        </div>
+      </div>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+      <%= yield %>
+    </div>
+  </div>
+</main>
+</body>
 </html>
