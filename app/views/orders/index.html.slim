@@ -1,0 +1,21 @@
+h1 Listing Order
+
+table
+  thead
+    tr
+      th Customer
+      th
+      th
+      th
+
+  tbody
+    - @orders.each do |order|
+      tr
+        td = order.customer
+        td = link_to 'Show', order
+        td = link_to 'Edit', edit_cart_path(order)
+        td = link_to 'Destroy', order, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Order', new_order_path

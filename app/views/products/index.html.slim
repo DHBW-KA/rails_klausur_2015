@@ -1,0 +1,25 @@
+h1 Listing products
+
+table.ui.table
+  thead
+    tr
+      th Name
+      th Price
+      th Weight
+      th
+      th
+      th
+
+  tbody
+    - @products.each do |product|
+      tr data-id=product.id
+        td = product.name
+        td = product.price
+        td = product.weight
+        td = link_to 'Add', add_to_cart_product_path(product), remote: true, method: :put
+        td = link_to 'Edit', edit_product_path(product)
+        td = link_to 'Destroy', product, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Product', new_product_path

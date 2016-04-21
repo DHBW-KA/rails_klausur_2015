@@ -1,0 +1,3 @@
+li data-id=product.id
+  b= product.name
+  = link_to "X", remove_from_cart_product_path(product, format: :js), remote: true, method: :delete, class: 'a ui red button'

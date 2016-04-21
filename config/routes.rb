@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :addresses
+  resources :customers
+  resources :carts, :orders
+  resources :products do
+    put :add_to_cart, on: :member
+    delete :remove_from_cart, on: :member
+  end
+
+  root 'products#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
