@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action do
-    @products = Product.where(id: session[:cart_product_ids])
+    @products_in_cart = Product.where(id: session[:cart_product_ids])
   end
 end
